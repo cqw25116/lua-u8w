@@ -104,9 +104,6 @@
     <ClCompile Include="lbaselib.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lbitlib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lcode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -177,9 +174,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lu8w.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lu8wlib.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lundump.c">

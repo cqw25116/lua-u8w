@@ -39,10 +39,6 @@ LUALIB_API int (luaopen_debug) (lua_State *L);
 #define LUA_LOADLIBNAME	"package"
 LUALIB_API int (luaopen_package) (lua_State *L);
 
-#ifdef U8W_H
-#define LUA_U8WLIBNAME	"u8w"
-LUALIB_API int (luaopen_u8w) (lua_State *L);
-#endif
 
 
 /* open all previous libraries */

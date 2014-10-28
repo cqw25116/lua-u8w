@@ -156,7 +156,6 @@
     <ClInclude Include="..\luaxx\lapi.h" />
     <ClInclude Include="..\luaxx\lauxlib.h" />
     <ClInclude Include="..\luaxx\lcode.h" />
-    <ClInclude Include="..\luaxx\lctype.h" />
     <ClInclude Include="..\luaxx\ldebug.h" />
     <ClInclude Include="..\luaxx\ldo.h" />
     <ClInclude Include="..\luaxx\lfunc.h" />
@@ -173,7 +172,6 @@
     <ClInclude Include="..\luaxx\ltm.h" />
     <ClInclude Include="..\luaxx\lu8w.h" />
     <ClInclude Include="..\luaxx\lua.h" />
-    <ClInclude Include="..\luaxx\lua.hpp" />
     <ClInclude Include="..\luaxx\luaconf.h" />
     <ClInclude Include="..\luaxx\lualib.h" />
     <ClInclude Include="..\luaxx\lundump.h" />
@@ -209,7 +207,6 @@
     <ClCompile Include="..\luaxx\ltablib.c" />
     <ClCompile Include="..\luaxx\ltm.c" />
     <ClCompile Include="..\luaxx\lu8w.c" />
-    <ClCompile Include="..\luaxx\lu8wlib.c" />
     <ClCompile Include="..\luaxx\lundump.c" />
     <ClCompile Include="..\luaxx\lvm.c" />
     <ClCompile Include="..\luaxx\lzio.c" />

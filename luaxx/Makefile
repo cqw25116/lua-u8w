@@ -27,7 +27,7 @@ CORE_O=	lapi.o lcode.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o \
 	lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o  \
 	lundump.o lvm.o lzio.o lu8w.o
 LIB_O=	lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o \
-	lstrlib.o loadlib.o linit.o lu8wlib.o
+	lstrlib.o loadlib.o linit.o
 
 LUA_T=	lua
 LUA_O=	../lua/lua.o lu8w.o
@@ -151,6 +151,5 @@ lzio.o: lzio.c lua.h luaconf.h llimits.h lmem.h lstate.h lobject.h ltm.h \
   ltm.h lzio.h lmem.h lopcodes.h lundump.h
 
 lu8w.o: lu8w.c lu8w.h
-lu8wlib.o: lu8wlib.c lua.h luaconf.h lauxlib.h lualib.h
 
 # (end of Makefile)
