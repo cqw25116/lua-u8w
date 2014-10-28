@@ -1,0 +1,449 @@
+/*
+  UTF-8 Wrapper for Windows
+
+  Released under the MIT license
+
+  Copyright (C) 2014 SASAKI Nobuyuki
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the "Software"),
+  to deal in the Software without restriction, including without limitation
+  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+*/
+
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <io.h>
+#include <windows.h>
+
+#define lu8w_c
+#include "lu8w.h"
+
+/* from ansi code page to utf-16 */
+wchar_t *u8lmbtolwc(const char *s, UINT codepage)
+{
+	int len;
+	wchar_t *wbuf = NULL;
+
+	len = MultiByteToWideChar(codepage, 0, s, -1, NULL, 0);
+	if(len) {
+		wbuf = (wchar_t *)calloc(len, sizeof(wchar_t));
+		if(wbuf) {
+			MultiByteToWideChar(codepage, 0, s, -1, wbuf, len);
+		}
+	}
+
+	/* call free function to deallocate */
+	return wbuf;
+}
+
+/* from utf-16 to ansi code page */
+char *u8lwctolmb(const wchar_t *s, UINT codepage)
+{
+	int len;
+	char *buf = NULL;
+
+	len = WideCharToMultiByte(codepage, 0, s, -1, NULL, 0, NULL, NULL);
+	if(len) {
+		buf = (char *)calloc(len, sizeof(char));
+		if(buf) {
+			WideCharToMultiByte(codepage, 0, s, -1, buf, len, NULL, NULL);
+		}
+	}
+
+	/* call free function to deallocate */
+	return buf;
+}
+
+/* from utf-8 to utf-16 */
+wchar_t *u8stows(const char *s)
+{
+	/* call free function to deallocate */
+	return u8lmbtolwc(s, CP_UTF8);
+}
+
+/* from utf-16 to utf-8 */
+char *u8wstos(const wchar_t *s)
+{
+	/* call free function to deallocate */
+	return u8lwctolmb(s, CP_UTF8);
+}
+
+DWORD u8GetModuleFileName(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
+{
+	wchar_t wfname[MAX_PATH];
+	char *b;
+
+	if(nSize == 0) return 0;
+	lpFilename[0] = '\0';
+
+	GetModuleFileNameW(hModule, wfname, sizeof(wfname) / sizeof(wchar_t));
+	b = u8wstos(wfname);
+	if(b) {
+		if(strlen(b) < nSize) {
+			strcpy(lpFilename, b);
+		}
+		free(b);
+	}
+
+	return (DWORD)strlen(lpFilename);
+}
+
+DWORD u8FormatMessage(DWORD dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD dwLanguageId,
+	LPSTR lpBuffer, DWORD nSize, va_list *Arguments)
+{
+	wchar_t *wbuf;
+	char *b;
+
+	if(nSize == 0) return 0;
+	lpBuffer[0] = '\0';
+
+	wbuf = (wchar_t *)calloc(nSize, sizeof(wchar_t));
+	if(wbuf){
+		FormatMessageW(dwFlags, lpSource, dwMessageId, dwLanguageId, wbuf, nSize, NULL);
+		b = u8wstos(wbuf);
+		if(b) {
+			if(strlen(b) < nSize) {
+				strcpy(lpBuffer, b);
+			}
+			free(b);
+		}
+		free(wbuf);
+	}
+
+	return (DWORD)strlen(lpBuffer);
+}
+
+HMODULE u8LoadLibraryEx(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
+{
+	wchar_t *wfname;
+	HMODULE lib = NULL;
+
+	wfname = u8stows(lpLibFileName);
+	if(wfname) {
+		lib = LoadLibraryExW(wfname, hFile, dwFlags);
+		free(wfname);
+	}
+
+	return lib;
+}
+
+FILE *u8fopen(const char *fname, const char *mode)
+{
+	wchar_t *wfname = u8stows(fname);
+	wchar_t *wmode = u8stows(mode);
+	FILE *fp = NULL;
+
+	if(wfname && wmode)	{
+		fp = _wfopen(wfname, wmode);
+	}
+	if(wfname) {
+		free(wfname);
+	}
+	if(wmode) {
+		free(wmode);
+	}
+
+	return fp;
+}
+
+FILE *u8freopen(const char *fname, const char *mode, FILE *oldfp)
+{
+	wchar_t *wfname = u8stows(fname);
+	wchar_t *wmode = u8stows(mode);
+	FILE *fp = NULL;
+
+	if(wfname && wmode)	{
+		fp = _wfreopen(wfname, wmode, oldfp);
+	}
+	if(wfname) {
+		free(wfname);
+	}
+	if(wmode) {
+		free(wmode);
+	}
+
+	return fp;
+}
+
+FILE *u8popen(const char *command, const char *mode)
+{
+	wchar_t *wcommand = u8stows(command);
+	wchar_t *wmode = u8stows(mode);
+	FILE *fp = NULL;
+
+	if(wcommand && wmode)	{
+		fp = _wpopen(wcommand, wmode);
+	}
+	if(wcommand) {
+		free(wcommand);
+	}
+	if(wmode) {
+		free(wmode);
+	}
+
+	return fp;
+}
+
+int u8fprintf(FILE *file, const char *format, ...)
+{
+	int ret = 0;
+	va_list argptr;
+	char *buf;
+	int buflen;
+	wchar_t *wbuf;
+
+	va_start(argptr, format);
+
+	buflen = _vscprintf(format, argptr) + 1;
+	if(buflen <= 0) {
+		return -1;
+	}
+
+	buf = (char *)calloc(buflen, sizeof(char));
+	if(buf == NULL) {
+		return -1;
+	}
+
+	vsnprintf(buf, buflen, format, argptr);
+
+	if(file == stdout || file == stderr) {
+		wbuf = u8stows(buf);
+		if(wbuf) {
+			ret = fwprintf(file, L"%s", wbuf);
+			free(wbuf);
+		}
+	}
+	else {
+		ret = fprintf(file, "%s", buf);
+	}
+
+	free(buf);
+
+	return ret;
+}
+
+int u8printf(const char *format, ...)
+{
+	int ret = 0;
+	va_list argptr;
+	char *buf;
+	int buflen;
+	wchar_t *wbuf;
+
+	va_start(argptr, format);
+
+	buflen = _vscprintf(format, argptr) + 1;
+	if(buflen <= 0) {
+		return -1;
+	}
+
+	buf = (char *)calloc(buflen, sizeof(char));
+	if(buf == NULL) {
+		return -1;
+	}
+
+	vsnprintf(buf, buflen, format, argptr);
+
+	wbuf = u8stows(buf);
+	if(wbuf) {
+		ret = wprintf(L"%s", wbuf);
+		free(wbuf);
+	}
+
+	free(buf);
+
+	return ret;
+}
+
+char *u8fgets(char *buf, int len, FILE *file)
+{
+	wint_t c, c0;
+	wchar_t ws[2 + 1];
+	char *b, *dst = NULL;
+
+	if(file == stdin) {
+		if(buf == NULL || len <= 0) return NULL;
+
+		buf[0] = '\0';
+		c0 = L'\0';
+		while((c = fgetwc(file)) != WEOF) {
+			if(IS_HIGH_SURROGATE(c0)) {
+				if(IS_LOW_SURROGATE(c)) {
+					ws[0] = c0;
+					ws[1] = c;
+					ws[2] = L'\0';
+				}
+				else {
+					ungetwc(c, file);
+					ws[0] = c0;
+					ws[1] = L'\0';
+				}
+			}
+			else if(IS_HIGH_SURROGATE(c)) {
+				c0 = c;
+				continue;
+			}
+			else {
+				ws[0] = c;
+				ws[1] = L'\0';
+			}
+			c0 = L'\0';
+
+			b = u8wstos(ws);
+			if(b) {
+				if(len > (int)(strlen(buf) + strlen(b))) {
+					strcat(buf, b);
+					free(b);
+				}
+				else {
+					free(b);
+					if(ws[1] != L'\0') ungetwc(ws[1], file);
+					if(ws[0] != L'\0') ungetwc(ws[0], file);
+					break;
+				}
+			}
+
+			if(c == L'\n') break;
+		}
+
+		if(c0 != L'\0') {
+			ungetwc(c0, file);
+		}
+
+		if(strlen(buf) > 0) dst = buf;
+	}
+	else {
+		dst = fgets(buf, len, file);
+	}
+
+	return dst;
+}
+
+int u8fputs(const char *buf, FILE *file)
+{
+	wchar_t *wbuf;
+	int ret = 0;
+
+	if(file == stdout || file == stderr) {
+		wbuf = u8stows(buf);
+		if(wbuf) {
+			ret = fputws(wbuf, file);
+			free(wbuf);
+		}
+	}
+	else {
+		ret = fputs(buf, file);
+	}
+
+	return ret;
+}
+
+char *u8getenv(const char *varname)
+{
+	wchar_t *wvarname;
+	wchar_t *wenv;
+	char *env = NULL;
+
+	wvarname = u8stows(varname);
+	if(wvarname) {
+		wenv = _wgetenv(wvarname);
+		if(wenv) {
+			env = u8wstos(wenv);
+		}
+		free(wvarname);
+	}
+
+	/* call free function to deallocate */
+	return env;
+}
+
+char *u8tmpnam(char *str)
+{
+	static char buf[L_tmpnam];
+	wchar_t wbuf[L_tmpnam];
+	wchar_t *w;
+	char *b, *t = NULL;
+
+	w = _wtmpnam(wbuf);
+	if(w) {
+		b = u8wstos(w);
+		if(b) {
+			if(str == NULL) {
+				t = buf;
+			}
+			else {
+				t = str;
+			}
+			if(strlen(b) < L_tmpnam) {
+				strcpy(t, b);
+			}
+			free(b);
+		}
+	}
+
+	return t;
+}
+
+int u8system(const char *command)
+{
+	wchar_t *wbuf;
+	int r = -1;
+
+	wbuf = u8stows(command);
+	if(wbuf) {
+		r = _wsystem(wbuf);
+		free(wbuf);
+	}
+
+	return r;
+}
+
+int u8remove(const char *fname)
+{
+	wchar_t *wfname;
+	int r = -1;
+
+	wfname = u8stows(fname);
+	if(wfname) {
+		r = _wremove(wfname);
+		free(wfname);
+	}
+
+	return r;
+}
+
+int u8rename(const char *oldfname, const char *newfname)
+{
+	wchar_t *woldfname;
+	wchar_t *wnewfname;
+	int r = -1;
+
+	woldfname = u8stows(oldfname);
+	wnewfname = u8stows(newfname);
+	if(woldfname && wnewfname) {
+		r = _wrename(woldfname, wnewfname);
+	}
+	if(woldfname) {
+		free(woldfname);
+	}
+	if(wnewfname) {
+		free(wnewfname);
+	}
+
+	return r;
+}
