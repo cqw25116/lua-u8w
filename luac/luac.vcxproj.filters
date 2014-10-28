@@ -194,9 +194,6 @@
     <ClCompile Include="..\luaxx\lu8w.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\luaxx\lu8wlib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\luaxx\lundump.c">
       <Filter>Source Files</Filter>
     </ClCompile>
