@@ -33,7 +33,7 @@ CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o \
 	lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o \
 	ltm.o lundump.o lvm.o lzio.o lu8w.o
 LIB_O=	lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o \
-	lmathlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o loadlib.o linit.o lu8wlib.o
+	lmathlib.o loslib.o lstrlib.o ltablib.o lutf8lib.o loadlib.o linit.o
 BASE_O= $(CORE_O) $(LIB_O) $(MYOBJS)
 
 LUA_T=	lua
@@ -161,6 +161,5 @@ lzio.o: lzio.c lua.h luaconf.h llimits.h lmem.h lstate.h lobject.h ltm.h \
  lzio.h
 
 lu8w.o: lu8w.c lu8w.h
-lu8wlib.o: lu8wlib.c lua.h luaconf.h lauxlib.h lualib.h
 
 # (end of Makefile)

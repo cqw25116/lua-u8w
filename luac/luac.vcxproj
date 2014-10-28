@@ -212,7 +212,6 @@
     <ClCompile Include="..\luaxx\ltablib.c" />
     <ClCompile Include="..\luaxx\ltm.c" />
     <ClCompile Include="..\luaxx\lu8w.c" />
-    <ClCompile Include="..\luaxx\lu8wlib.c" />
     <ClCompile Include="..\luaxx\lundump.c" />
     <ClCompile Include="..\luaxx\lutf8lib.c" />
     <ClCompile Include="..\luaxx\lvm.c" />
