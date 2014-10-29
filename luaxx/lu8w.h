@@ -30,11 +30,6 @@
 #include <stdio.h>
 #include <windows.h>
 
-/* from ansi code page to utf-16 */
-wchar_t *u8lmbtolwc(const char *s, UINT codepage);	/* call free function to deallocate */
-/* from utf-16 to ansi code page */
-char *u8lwctolmb(const wchar_t *s, UINT codepage);	/* call free function to deallocate */
-
 /* from utf-8 to utf-16 */
 wchar_t *u8stows(const char *s);	/* call free function to deallocate */
 /* from utf-16 to utf-8 */
@@ -59,7 +54,7 @@ int u8remove(const char *fname);
 int u8rename(const char *oldfname, const char *newfname);
 
 #if !defined(lu8w_c)
-#if defined(LUA_CORE) || defined(LUA_LIB) || defined(lua_c) || defined(luac_c)
+#if defined(LUA_U8W) || defined(LUA_CORE) || defined(LUA_LIB) || defined(lua_c) || defined(luac_c)
 #undef LoadString
 
 #define GetModuleFileNameA u8GetModuleFileName
