@@ -265,15 +265,12 @@
 @@ luai_writestring/luai_writeline define how 'print' prints its results.
 ** They are only used in libraries and the stand-alone program.
 */
-#if defined(LUA_LIB) || defined(lua_c)
-#include <stdio.h>
 #ifdef U8W_H
 #define luai_writestring(s,l)	fprintf(stdout, "%s", s)
 #else
 #define luai_writestring(s,l)	fwrite((s), sizeof(char), (l), stdout)
 #endif
 #define luai_writeline()	(luai_writestring("\n", 1), fflush(stdout))
-#endif
 
 /*
 @@ luai_writestringerror defines how to print error messages.
