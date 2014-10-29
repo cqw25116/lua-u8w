@@ -33,17 +33,17 @@
 #define lu8w_c
 #include "lu8w.h"
 
-/* from ansi code page to utf-16 */
-wchar_t *u8lmbtolwc(const char *s, UINT codepage)
+/* from utf-8 to utf-16 */
+wchar_t *u8stows(const char *s)
 {
 	int len;
 	wchar_t *wbuf = NULL;
 
-	len = MultiByteToWideChar(codepage, 0, s, -1, NULL, 0);
+	len = MultiByteToWideChar(CP_UTF8, 0, s, -1, NULL, 0);
 	if(len) {
 		wbuf = (wchar_t *)calloc(len, sizeof(wchar_t));
 		if(wbuf) {
-			MultiByteToWideChar(codepage, 0, s, -1, wbuf, len);
+			MultiByteToWideChar(CP_UTF8, 0, s, -1, wbuf, len);
 		}
 	}
 
@@ -51,36 +51,22 @@ wchar_t *u8lmbtolwc(const char *s, UINT codepage)
 	return wbuf;
 }
 
-/* from utf-16 to ansi code page */
-char *u8lwctolmb(const wchar_t *s, UINT codepage)
+/* from utf-16 to utf-8 */
+char *u8wstos(const wchar_t *s)
 {
 	int len;
 	char *buf = NULL;
 
-	len = WideCharToMultiByte(codepage, 0, s, -1, NULL, 0, NULL, NULL);
+	len = WideCharToMultiByte(CP_UTF8, 0, s, -1, NULL, 0, NULL, NULL);
 	if(len) {
 		buf = (char *)calloc(len, sizeof(char));
 		if(buf) {
-			WideCharToMultiByte(codepage, 0, s, -1, buf, len, NULL, NULL);
+			WideCharToMultiByte(CP_UTF8, 0, s, -1, buf, len, NULL, NULL);
 		}
 	}
 
 	/* call free function to deallocate */
 	return buf;
-}
-
-/* from utf-8 to utf-16 */
-wchar_t *u8stows(const char *s)
-{
-	/* call free function to deallocate */
-	return u8lmbtolwc(s, CP_UTF8);
-}
-
-/* from utf-16 to utf-8 */
-char *u8wstos(const wchar_t *s)
-{
-	/* call free function to deallocate */
-	return u8lwctolmb(s, CP_UTF8);
 }
 
 DWORD u8GetModuleFileName(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
