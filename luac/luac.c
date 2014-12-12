@@ -1,17 +1,19 @@
 /*
-** $Id: luac.c,v 1.69 2011/11/29 17:46:33 lhf Exp $
-** Lua compiler (saves bytecodes to files; also list bytecodes)
+** $Id: luac.c,v 1.71 2014/11/26 12:08:59 lhf Exp $
+** Lua compiler (saves bytecodes to files; also lists bytecodes)
 ** See Copyright Notice in lua.h
 */
 
+#define luac_c
+#define LUA_CORE
+
+#include "lprefix.h"
+
+#include <ctype.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <locale.h>
-
-#define luac_c
-#define LUA_CORE
 
 #include "lua.h"
 #include "lauxlib.h"
@@ -296,7 +298,9 @@ int main(int argc, char* argv[])
 #include "lobject.h"
 #include "lopcodes.h"
 
+#ifdef U8W_H
 #undef VOID
+#endif
 #define VOID(p)		((const void*)(p))
 
 static void PrintString(const TString* ts)

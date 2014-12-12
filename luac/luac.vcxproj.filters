@@ -60,6 +60,9 @@
     <ClInclude Include="..\luaxx\lparser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\luaxx\lprefix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\luaxx\lstate.h">
       <Filter>Header Files</Filter>
     </ClInclude>

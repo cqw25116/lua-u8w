@@ -60,6 +60,9 @@
     <ClInclude Include="lparser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lprefix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="lstate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
