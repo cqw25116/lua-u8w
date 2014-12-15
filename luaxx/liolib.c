@@ -488,19 +488,25 @@ static int read_line_w (lua_State *L, FILE *f, int chop) {
     c0 = L'\0';
     while ((c = getwc(f)) != WEOF && c != L'\n') {
       if(IS_HIGH_SURROGATE(c0)) {
-        if(IS_LOW_SURROGATE(c)) {
+        if(IS_HIGH_SURROGATE(c)) {
+          c0 = c;
+          continue;
+        }
+        else if(IS_LOW_SURROGATE(c)) {
           ws[0] = c0;
           ws[1] = c;
           ws[2] = L'\0';
         }
         else {
-          ungetwc(c, f);
-          ws[0] = c0;
+          ws[0] = c;
           ws[1] = L'\0';
         }
       }
       else if(IS_HIGH_SURROGATE(c)) {
         c0 = c;
+        continue;
+      }
+      else if(IS_LOW_SURROGATE(c)) {
         continue;
       }
       else {
