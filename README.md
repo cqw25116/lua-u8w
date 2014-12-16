@@ -1,7 +1,7 @@
-lua-u8w *(rc0 version)*
+lua-u8w *(rc1 version)*
 ======
 
-[Lua](http://www.lua.org/) 5.3.0 (rc0) with UTF-8 Wrapper for Windows
+[Lua](http://www.lua.org/) 5.3.0 (rc1) with UTF-8 Wrapper for Windows
 
 Released under the MIT license.
 
