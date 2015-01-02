@@ -1,5 +1,5 @@
 /*
-** $Id: liolib.c,v 2.141 2014/11/21 12:17:33 roberto Exp $
+** $Id: liolib.c,v 2.142 2015/01/02 12:50:28 roberto Exp $
 ** Standard I/O (and system) library
 ** See Copyright Notice in lua.h
 */
@@ -465,11 +465,11 @@ static int test_eof (lua_State *L, FILE *f) {
 #ifdef U8W_H
 static int read_line_w (lua_State *L, FILE *f, int chop) {
   luaL_Buffer b;
-  wint_t c, c0;
+  wint_t c = L'\0', c0;
   wchar_t ws[2 + 1];
   char *ps = NULL, *pps = NULL;
   luaL_buffinit(L, &b);
-  for (;;) {
+  while (c != WEOF && c != L'\n') {  /* repeat until end of line */
     char *buff = luaL_prepbuffer(&b);  /* pre-allocate buffer */
     int i = 0;
     l_lockfile(f);  /* no memory errors can happen inside the lock */
@@ -533,8 +533,6 @@ static int read_line_w (lua_State *L, FILE *f, int chop) {
     }
     l_unlockfile(f);
     luaL_addsize(&b, i);
-    if (i < LUAL_BUFFERSIZE)
-      break;
   }
   if (!chop && c == L'\n')  /* want a newline and have one? */
     luaL_addchar(&b, (int)c);  /* add ending newline to result */
@@ -544,9 +542,9 @@ static int read_line_w (lua_State *L, FILE *f, int chop) {
 }
 static int read_line_c (lua_State *L, FILE *f, int chop) {
   luaL_Buffer b;
-  int c;
+  int c = '\0';
   luaL_buffinit(L, &b);
-  for (;;) {
+  while (c != EOF && c != '\n') {  /* repeat until end of line */
     char *buff = luaL_prepbuffer(&b);  /* pre-allocate buffer */
     int i = 0;
     l_lockfile(f);  /* no memory errors can happen inside the lock */
@@ -554,8 +552,6 @@ static int read_line_c (lua_State *L, FILE *f, int chop) {
       buff[i++] = c;
     l_unlockfile(f);
     luaL_addsize(&b, i);
-    if (i < LUAL_BUFFERSIZE)
-      break;
   }
   if (!chop && c == '\n')  /* want a newline and have one? */
     luaL_addchar(&b, c);  /* add ending newline to result */
@@ -572,9 +568,9 @@ static int read_line (lua_State *L, FILE *f, int chop) {
 #else
 static int read_line (lua_State *L, FILE *f, int chop) {
   luaL_Buffer b;
-  int c;
+  int c = '\0';
   luaL_buffinit(L, &b);
-  for (;;) {
+  while (c != EOF && c != '\n') {  /* repeat until end of line */
     char *buff = luaL_prepbuffer(&b);  /* pre-allocate buffer */
     int i = 0;
     l_lockfile(f);  /* no memory errors can happen inside the lock */
@@ -582,8 +578,6 @@ static int read_line (lua_State *L, FILE *f, int chop) {
       buff[i++] = c;
     l_unlockfile(f);
     luaL_addsize(&b, i);
-    if (i < LUAL_BUFFERSIZE)
-      break;
   }
   if (!chop && c == '\n')  /* want a newline and have one? */
     luaL_addchar(&b, c);  /* add ending newline to result */

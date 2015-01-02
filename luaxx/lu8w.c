@@ -1,5 +1,7 @@
 /*
   UTF-8 Wrapper for Windows
+  Released under the MIT license
+  Copyright (C) 2015 SASAKI Nobuyuki
 */
 
 #include "lprefix.h"
