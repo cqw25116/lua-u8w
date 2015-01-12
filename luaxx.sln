@@ -12,6 +12,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua\lua.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luac", "luac\luac.vcxproj", "{17D7E163-DA93-4FAF-B08C-4CEDF079CBF5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{3AE073E5-4369-411C-8794-9BBC1BA462B9}"
+	ProjectSection(SolutionItems) = preProject
+		doc\contents.html = doc\contents.html
+		doc\manual.html = doc\manual.html
+		doc\readme.html = doc\readme.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
