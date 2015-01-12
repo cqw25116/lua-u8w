@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaxx", "luaxx\luaxx.vcxproj", "{E2AE4B73-2028-4502-9352-A2E490330EEE}"
 EndProject
@@ -11,6 +11,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua\lua.vcxproj", "{
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luac", "luac\luac.vcxproj", "{17D7E163-DA93-4FAF-B08C-4CEDF079CBF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{9B429754-5117-42FB-8C73-5CBE91EE6474}"
+	ProjectSection(SolutionItems) = preProject
+		doc\contents.html = doc\contents.html
+		doc\manual.html = doc\manual.html
+		doc\readme.html = doc\readme.html
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
