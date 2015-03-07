@@ -1,7 +1,7 @@
 lua-u8w
 ======
 
-[Lua](http://www.lua.org/) 5.2.3 with UTF-8 Wrapper for Windows
+[Lua](http://www.lua.org/) 5.2.4 with UTF-8 Wrapper for Windows
 
 Released under the MIT license.
 
@@ -20,5 +20,5 @@ Changes to original sources are:
 - add arguments conversion from UTF-16 to UTF-8 in wmain function
 - add call setlocale function in wmain function
 
-This solution is made with Visual Sutdio 2013 Update 3.
+This solution is made with Visual Sutdio 2013 Update 4.
 Makefile is modified for MinGW platform only.
