@@ -1,27 +1,5 @@
 /*
   UTF-8 Wrapper for Windows
-
-  Released under the MIT license
-
-  Copyright (C) 2014 SASAKI Nobuyuki
-
-  Permission is hereby granted, free of charge, to any person obtaining a
-  copy of this software and associated documentation files (the "Software"),
-  to deal in the Software without restriction, including without limitation
-  the rights to use, copy, modify, merge, publish, distribute, sublicense,
-  and/or sell copies of the Software, and to permit persons to whom the
-  Software is furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-  DEALINGS IN THE SOFTWARE.
 */
 
 #include <ctype.h>
@@ -39,8 +17,8 @@ wchar_t *u8stows(const char *s)
 	int len;
 	wchar_t *wbuf = NULL;
 
-	len = MultiByteToWideChar(CP_UTF8, 0, s, -1, NULL, 0);
-	if(len) {
+	len = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, s, -1, NULL, 0);
+	if(len > 0) {
 		wbuf = (wchar_t *)calloc(len, sizeof(wchar_t));
 		if(wbuf) {
 			MultiByteToWideChar(CP_UTF8, 0, s, -1, wbuf, len);
@@ -57,8 +35,8 @@ char *u8wstos(const wchar_t *s)
 	int len;
 	char *buf = NULL;
 
-	len = WideCharToMultiByte(CP_UTF8, 0, s, -1, NULL, 0, NULL, NULL);
-	if(len) {
+	len = WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, s, -1, NULL, 0, NULL, NULL);
+	if(len > 0) {
 		buf = (char *)calloc(len, sizeof(char));
 		if(buf) {
 			WideCharToMultiByte(CP_UTF8, 0, s, -1, buf, len, NULL, NULL);
