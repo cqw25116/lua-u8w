@@ -3,10 +3,7 @@ lua-u8w
 
 [Lua](http://www.lua.org/) 5.1.5 with UTF-8 Wrapper for Windows
 
-Released under the MIT license.
-
-This is Lua with converter from UTF-8 to UTF-16(LE) and vice versa at Windows API and C runtime functions.
-It is useful to use UTF-8 as Lua string and call Unicode functions.
+Lua with converter from UTF-8 to UTF-16(LE) and vice versa at Windows API and C runtime functions.
 
 See lu8w.c and lu8w.h source files, and #ifdef U8W_H directives.
 
@@ -20,5 +17,7 @@ Changes to original sources are:
 - add arguments conversion from UTF-16 to UTF-8 in wmain function
 - add call setlocale function in wmain function
 
-This solution is made with Visual Sutdio 2013 Update 3.
-Makefile is modified for MinGW platform only.
+Released under the MIT license
+
+Copyright (C) 1994-2012 Lua.org, PUC-Rio.
+Copyright (C) 2015 SASAKI Nobuyuki
