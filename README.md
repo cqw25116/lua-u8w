@@ -20,4 +20,5 @@ Changes to original sources are:
 Released under the MIT license
 
 Copyright (C) 1994-2015 Lua.org, PUC-Rio.
+
 Copyright (C) 2015 SASAKI Nobuyuki
