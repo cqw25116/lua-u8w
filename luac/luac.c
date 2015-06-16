@@ -253,18 +253,6 @@ int wmain(int argc, wchar_t* wargv[])
 
  return EXIT_SUCCESS;
 }
-#ifdef __GNUC__
-int main(int argc, char **argv) {
-  int ret, wargc = 0;
-  wchar_t** wargv;
-
-  wargv = CommandLineToArgvW(GetCommandLineW(), &wargc);
-  ret = wmain(wargc, wargv);
-  LocalFree(wargv);
-
-  return ret;
-}
-#endif /* __GNUC__ */
 #else /* U8W_H */
 int main(int argc, char* argv[])
 {
