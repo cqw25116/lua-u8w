@@ -1,7 +1,7 @@
 lua-u8w
 ======
 
-[Lua](http://www.lua.org/) 5.3.0 with UTF-8 Wrapper for Windows
+[Lua](http://www.lua.org/) 5.3.1 with UTF-8 Wrapper for Windows
 
 Lua with converter from UTF-8 to UTF-16(LE) and vice versa at Windows API and C runtime functions.
 
