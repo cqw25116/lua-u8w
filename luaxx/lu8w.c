@@ -87,7 +87,7 @@ DWORD u8FormatMessage(DWORD dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD 
 		b = u8wstos(wbuf);
 		if(b) {
 			if((dwFlags & FORMAT_MESSAGE_ALLOCATE_BUFFER) != 0) {
-				nSize = max(strlen(b) + 1, nSize);
+				nSize = (DWORD)max(strlen(b) + 1, nSize);
 				*((LPSTR *)lpBuffer) = (LPSTR)LocalAlloc(LPTR, nSize);
 				lpBuffer = *((LPSTR *)lpBuffer);
 				if(lpBuffer == NULL) {
@@ -96,7 +96,7 @@ DWORD u8FormatMessage(DWORD dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD 
 			}
 			if(strlen(b) < nSize) {
 				strcpy(lpBuffer, b);
-				len = strlen(b);
+				len = (DWORD)strlen(b);
 			}
 			free(b);
 		}
