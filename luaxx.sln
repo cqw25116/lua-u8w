@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
+# Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaxx", "luaxx\luaxx.vcxproj", "{E2AE4B73-2028-4502-9352-A2E490330EEE}"
@@ -15,7 +15,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{9B429754-5117-42FB-8C73-5CBE91EE6474}"
 	ProjectSection(SolutionItems) = preProject
 		doc\contents.html = doc\contents.html
+		doc\logo.gif = doc\logo.gif
+		doc\lua.1 = doc\lua.1
+		doc\lua.css = doc\lua.css
+		doc\luac.1 = doc\luac.1
+		doc\manual.css = doc\manual.css
 		doc\manual.html = doc\manual.html
+		doc\osi-certified-72x60.png = doc\osi-certified-72x60.png
 		doc\readme.html = doc\readme.html
 	EndProjectSection
 EndProject
