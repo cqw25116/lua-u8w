@@ -94,7 +94,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)luaxx</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)liblua</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
@@ -109,7 +109,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)luaxx</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)liblua</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
@@ -126,7 +126,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)luaxx</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)liblua</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
@@ -146,7 +146,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)luaxx</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)liblua</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
@@ -158,70 +158,70 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\luaxx\lapi.h" />
-    <ClInclude Include="..\luaxx\lauxlib.h" />
-    <ClInclude Include="..\luaxx\lcode.h" />
-    <ClInclude Include="..\luaxx\lctype.h" />
-    <ClInclude Include="..\luaxx\ldebug.h" />
-    <ClInclude Include="..\luaxx\ldo.h" />
-    <ClInclude Include="..\luaxx\lfunc.h" />
-    <ClInclude Include="..\luaxx\lgc.h" />
-    <ClInclude Include="..\luaxx\llex.h" />
-    <ClInclude Include="..\luaxx\llimits.h" />
-    <ClInclude Include="..\luaxx\lmem.h" />
-    <ClInclude Include="..\luaxx\lobject.h" />
-    <ClInclude Include="..\luaxx\lopcodes.h" />
-    <ClInclude Include="..\luaxx\lparser.h" />
-    <ClInclude Include="..\luaxx\lprefix.h" />
-    <ClInclude Include="..\luaxx\lstate.h" />
-    <ClInclude Include="..\luaxx\lstring.h" />
-    <ClInclude Include="..\luaxx\ltable.h" />
-    <ClInclude Include="..\luaxx\ltm.h" />
-    <ClInclude Include="..\luaxx\lu8w.h" />
-    <ClInclude Include="..\luaxx\lua.h" />
-    <ClInclude Include="..\luaxx\lua.hpp" />
-    <ClInclude Include="..\luaxx\luaconf.h" />
-    <ClInclude Include="..\luaxx\lualib.h" />
-    <ClInclude Include="..\luaxx\lundump.h" />
-    <ClInclude Include="..\luaxx\lvm.h" />
-    <ClInclude Include="..\luaxx\lzio.h" />
+    <ClInclude Include="..\liblua\lapi.h" />
+    <ClInclude Include="..\liblua\lauxlib.h" />
+    <ClInclude Include="..\liblua\lcode.h" />
+    <ClInclude Include="..\liblua\lctype.h" />
+    <ClInclude Include="..\liblua\ldebug.h" />
+    <ClInclude Include="..\liblua\ldo.h" />
+    <ClInclude Include="..\liblua\lfunc.h" />
+    <ClInclude Include="..\liblua\lgc.h" />
+    <ClInclude Include="..\liblua\llex.h" />
+    <ClInclude Include="..\liblua\llimits.h" />
+    <ClInclude Include="..\liblua\lmem.h" />
+    <ClInclude Include="..\liblua\lobject.h" />
+    <ClInclude Include="..\liblua\lopcodes.h" />
+    <ClInclude Include="..\liblua\lparser.h" />
+    <ClInclude Include="..\liblua\lprefix.h" />
+    <ClInclude Include="..\liblua\lstate.h" />
+    <ClInclude Include="..\liblua\lstring.h" />
+    <ClInclude Include="..\liblua\ltable.h" />
+    <ClInclude Include="..\liblua\ltm.h" />
+    <ClInclude Include="..\liblua\lu8w.h" />
+    <ClInclude Include="..\liblua\lua.h" />
+    <ClInclude Include="..\liblua\lua.hpp" />
+    <ClInclude Include="..\liblua\luaconf.h" />
+    <ClInclude Include="..\liblua\lualib.h" />
+    <ClInclude Include="..\liblua\lundump.h" />
+    <ClInclude Include="..\liblua\lvm.h" />
+    <ClInclude Include="..\liblua\lzio.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\luaxx\lapi.c" />
-    <ClCompile Include="..\luaxx\lauxlib.c" />
-    <ClCompile Include="..\luaxx\lbaselib.c" />
-    <ClCompile Include="..\luaxx\lbitlib.c" />
-    <ClCompile Include="..\luaxx\lcode.c" />
-    <ClCompile Include="..\luaxx\lcorolib.c" />
-    <ClCompile Include="..\luaxx\lctype.c" />
-    <ClCompile Include="..\luaxx\ldblib.c" />
-    <ClCompile Include="..\luaxx\ldebug.c" />
-    <ClCompile Include="..\luaxx\ldo.c" />
-    <ClCompile Include="..\luaxx\ldump.c" />
-    <ClCompile Include="..\luaxx\lfunc.c" />
-    <ClCompile Include="..\luaxx\lgc.c" />
-    <ClCompile Include="..\luaxx\linit.c" />
-    <ClCompile Include="..\luaxx\liolib.c" />
-    <ClCompile Include="..\luaxx\llex.c" />
-    <ClCompile Include="..\luaxx\lmathlib.c" />
-    <ClCompile Include="..\luaxx\lmem.c" />
-    <ClCompile Include="..\luaxx\loadlib.c" />
-    <ClCompile Include="..\luaxx\lobject.c" />
-    <ClCompile Include="..\luaxx\lopcodes.c" />
-    <ClCompile Include="..\luaxx\loslib.c" />
-    <ClCompile Include="..\luaxx\lparser.c" />
-    <ClCompile Include="..\luaxx\lstate.c" />
-    <ClCompile Include="..\luaxx\lstring.c" />
-    <ClCompile Include="..\luaxx\lstrlib.c" />
-    <ClCompile Include="..\luaxx\ltable.c" />
-    <ClCompile Include="..\luaxx\ltablib.c" />
-    <ClCompile Include="..\luaxx\ltm.c" />
-    <ClCompile Include="..\luaxx\lu8w.c" />
-    <ClCompile Include="..\luaxx\lundump.c" />
-    <ClCompile Include="..\luaxx\lutf8lib.c" />
-    <ClCompile Include="..\luaxx\lvm.c" />
-    <ClCompile Include="..\luaxx\lzio.c" />
+    <ClCompile Include="..\liblua\lapi.c" />
+    <ClCompile Include="..\liblua\lauxlib.c" />
+    <ClCompile Include="..\liblua\lbaselib.c" />
+    <ClCompile Include="..\liblua\lbitlib.c" />
+    <ClCompile Include="..\liblua\lcode.c" />
+    <ClCompile Include="..\liblua\lcorolib.c" />
+    <ClCompile Include="..\liblua\lctype.c" />
+    <ClCompile Include="..\liblua\ldblib.c" />
+    <ClCompile Include="..\liblua\ldebug.c" />
+    <ClCompile Include="..\liblua\ldo.c" />
+    <ClCompile Include="..\liblua\ldump.c" />
+    <ClCompile Include="..\liblua\lfunc.c" />
+    <ClCompile Include="..\liblua\lgc.c" />
+    <ClCompile Include="..\liblua\linit.c" />
+    <ClCompile Include="..\liblua\liolib.c" />
+    <ClCompile Include="..\liblua\llex.c" />
+    <ClCompile Include="..\liblua\lmathlib.c" />
+    <ClCompile Include="..\liblua\lmem.c" />
+    <ClCompile Include="..\liblua\loadlib.c" />
+    <ClCompile Include="..\liblua\lobject.c" />
+    <ClCompile Include="..\liblua\lopcodes.c" />
+    <ClCompile Include="..\liblua\loslib.c" />
+    <ClCompile Include="..\liblua\lparser.c" />
+    <ClCompile Include="..\liblua\lstate.c" />
+    <ClCompile Include="..\liblua\lstring.c" />
+    <ClCompile Include="..\liblua\lstrlib.c" />
+    <ClCompile Include="..\liblua\ltable.c" />
+    <ClCompile Include="..\liblua\ltablib.c" />
+    <ClCompile Include="..\liblua\ltm.c" />
+    <ClCompile Include="..\liblua\lu8w.c" />
+    <ClCompile Include="..\liblua\lundump.c" />
+    <ClCompile Include="..\liblua\lutf8lib.c" />
+    <ClCompile Include="..\liblua\lvm.c" />
+    <ClCompile Include="..\liblua\lzio.c" />
     <ClCompile Include="luac.c" />
     <ClCompile Include="stdafx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
