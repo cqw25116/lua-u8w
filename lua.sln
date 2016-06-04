@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaxx", "luaxx\luaxx.vcxproj", "{E2AE4B73-2028-4502-9352-A2E490330EEE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblua", "liblua\liblua.vcxproj", "{E2AE4B73-2028-4502-9352-A2E490330EEE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua\lua.vcxproj", "{FC481390-4D93-4DA4-9EB3-8ED26D1396BA}"
 	ProjectSection(ProjectDependencies) = postProject
